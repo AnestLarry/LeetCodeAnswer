@@ -25,14 +25,15 @@
 // Input: head = [3,2,0,-4], pos = 1
 // Output: true
 // Explanation: There is a cycle in the linked list, where tail connects to the second node.
-// Accepted
-// 17/17 cases passed (100 ms)
-// Your runtime beats 74.98 % of csharp submissions
-// Your memory usage beats 14.29 % of csharp submissions (24.6 MB)
+
 public class Solution
 {
     public bool HasCycle(ListNode head)
     {
+        // Accepted
+        // 17/17 cases passed (100 ms)
+        // Your runtime beats 74.98 % of csharp submissions
+        // Your memory usage beats 14.29 % of csharp submissions (24.6 MB)
         if (head == null || head.next == null)
         {
             return false;
@@ -50,6 +51,28 @@ public class Solution
             root.next = head;
             root = temp;
 
+        }
+        return false;
+    }
+    public bool HasCycle2(ListNode head)
+    {
+        // Accepted
+        // 17/17 cases passed (100 ms)
+        // Your runtime beats 74.98 % of csharp submissions
+        // Your memory usage beats 7.14 % of csharp submissions (24.8 MB)
+        if (head == null || head.next == null)
+        {
+            return false;
+        }
+        ListNode slow = head, fast = head;
+        while (slow != null && fast != null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast)
+            {
+                return true;
+            }
         }
         return false;
     }
