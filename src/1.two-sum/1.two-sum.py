@@ -13,14 +13,20 @@
 
 # Because nums[0] + nums[1] = 2 + 7 = 9,
 # return [0, 1].
+
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        i,j,l=0,1,len(nums)
-        while  i <l:
-            while j < l:
-                if nums[i]+nums[j] == target:
-                    return[i,j]
-                j+=1
-            i,j=i+1,i+2
-
-
+        # Accepted
+        # 29/29 cases passed (60 ms)
+        # Your runtime beats 93.87 % of python3 submissions
+        # Your memory usage beats 53.21 % of python3 submissions (14.1 MB)
+        m = {}
+        i = 0
+        while i < len(nums):
+            if nums[i] not in m.keys():
+                m[target - nums[i]] = i
+            else:
+                return m[nums[i]], i
+            i += 1
+        return -1, -1

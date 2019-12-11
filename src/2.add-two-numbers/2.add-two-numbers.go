@@ -19,66 +19,36 @@
 // Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 // Output: 7 -> 0 -> 8
 // Explanation: 342 + 465 = 807.
-//  √ Accepted
-//   √ 1563/1563 cases passed (12 ms)
-//   √ Your runtime beats 86.23 % of golang submissions
-//   √ Your memory usage beats 66.33 % of golang submissions (5 MB)
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	root := new(ListNode)
-	n, a, r := root, false, 0
-	for l1 != nil && l2 != nil {
-		if a {
-			r = l1.Val + l2.Val + 1
-			a = false
-		} else {
-			r = l1.Val + l2.Val
-		}
-		if r < 10 {
-			n.Next = &ListNode{Val: r}
-		} else {
-			n.Next = &ListNode{Val: r % 10}
-			a = true
-		}
-		l1, l2, n = l1.Next, l2.Next, n.Next
-	}
-
-	for true {
+	// Accepted
+	// 1563/1563 cases passed (12 ms)
+	// Your runtime beats 81.21 % of golang submissions
+	// Your memory usage beats 72.11 % of golang submissions (5 MB)
+	root := &ListNode{Val: 0}
+	n, flag := root, false
+	for l1 != nil || l2 != nil || flag {
+		v1, v2, val := 0, 0, 0
 		if l1 != nil {
-			if a {
-				r = l1.Val + 1
-				a = false
-			} else {
-				r = l1.Val
-			}
-			if r < 10 {
-				n.Next = &ListNode{Val: r}
-			} else {
-				n.Next = &ListNode{Val: r % 10}
-				a = true
-			}
-			l1, n = l1.Next, n.Next
-			continue
-		} else if l2 != nil {
-			if a {
-				r = l2.Val + 1
-				a = false
-			} else {
-				r = l2.Val
-			}
-			if r < 10 {
-				n.Next = &ListNode{Val: r}
-			} else {
-				n.Next = &ListNode{Val: r % 10}
-				a = true
-			}
-			l2, n = l2.Next, n.Next
-			continue
-		} else if a {
-			n.Next = &ListNode{Val: 1}
-			a = false
-
+			v1 = l1.Val
+			l1 = l1.Next
 		}
-		break
+		if l2 != nil {
+			v2 = l2.Val
+			l2 = l2.Next
+		}
+		if flag {
+			val = v1 + v2 + 1
+			flag = false
+		} else {
+			val = v1 + v2
+		}
+		if val < 10 {
+			n.Next = &ListNode{Val: val}
+		} else {
+			n.Next = &ListNode{Val: val - 10}
+			flag = true
+		}
+		n = n.Next
 	}
 	return root.Next
 }

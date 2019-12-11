@@ -15,15 +15,18 @@ return [0, 1].
 */
 
 func twoSum(nums []int, target int) []int {
-	i, j, l := 0, 1, len(nums)
-	for i < l {
-		for j < l {
-			if nums[i]+nums[j] == target {
-				return []int{i, j}
-			}
-			j++
+	// Accepted
+	// 29/29 cases passed (4 ms)
+	// Your runtime beats 96.89 % of golang submissions
+	// Your memory usage beats 29.3 % of golang submissions (3.8 MB)
+	m := make(map[int]int)
+	for i := 0; i < len(nums); i++ {
+		_, ok := m[nums[i]]
+		if ok == false {
+			m[target-nums[i]] = i
+		} else {
+			return []int{m[nums[i]], i}
 		}
-		i, j = i+1, i+2
 	}
-	return []int{l - 1, l}
+	return []int{-1, -1}
 }

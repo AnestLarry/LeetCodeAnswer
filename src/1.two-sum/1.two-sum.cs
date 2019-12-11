@@ -12,23 +12,28 @@ Given nums = [2, 7, 11, 15], target = 9,
 
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
-
-√ Accepted
-  √ 29/29 cases passed (420 ms)
-  √ Your runtime beats 29.04 % of csharp submissions
-  √ Your memory usage beats 99.82 % of csharp submissions (28.4 MB)
  */
-public class Solution {
-    public int[] TwoSum(int[] nums, int target) {
-        int l=nums.Length;
-        for ( int i =0; i<l; i++){
-            for (int j=i+1;j < l;j++){
-                if (nums[i]+nums[j]==target){
-                    return new int[] {i,j};
-                }
+public class Solution
+{
+    public int[] TwoSum(int[] nums, int target)
+    {
+        // Accepted
+        // 29/29 cases passed (324 ms)
+        // Your runtime beats 73.7 % of csharp submissions
+        // Your memory usage beats 5.33 % of csharp submissions (30.3 MB)
+        Dictionary<int, int> m = new Dictionary<int, int>();
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (m.ContainsKey(target - nums[i]))
+            {
+                return new int[] { m[target - nums[i]], i };
+            }
+            else
+            {
+                m[nums[i]] = i;
             }
         }
-        return new int[] {0,1};
+        return new int[] { -1, -1 };
     }
 }
 

@@ -17,55 +17,30 @@
 # Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 # Output: 7 -> 0 -> 8
 # Explanation: 342 + 465 = 807.
-# √ Accepted
-#   √ 1563/1563 cases passed (72 ms)
-#   √ Your runtime beats 94.88 % of python3 submissions
-#   √ Your memory usage beats 58.5 % of python3 submissions (13.2 MB)
+
+
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        root = ListNode(0)
-        n,a=root,False
-        while l1 and l2 :
-            if a:
-                r = l1.val+l2.val+1
-                a=False
-            else:
-                r=l1.val+l2.val
-            if r <10:
-                n.next = ListNode(r)
-            else:
-                n.next = ListNode(r%10)
-                a=True
-            l1,l2,n=l1.next,l2.next,n.next
-        while True:
+        # Accepted
+        # 1563/1563 cases passed (68 ms)
+        # Your runtime beats 98.32 % of python3 submissions
+        # Your memory usage beats 99.56 % of python3 submissions (12.8 MB)
+        root = n = ListNode(0)
+        flag = False
+        while l1 or l2 or flag:
+            v1 = v2 = 0
             if l1:
-                if a:
-                    r = l1.val+1
-                    a=False
-                else:
-                    r=l1.val
-                if r<10:
-                    n.next = ListNode(r)
-                else:
-                    n.next = ListNode(r%10)
-                    a=True
-                l1,n=l1.next,n.next
-                continue
-            elif l2:
-                if a:
-                    r = l2.val+1
-                    a=False
-                else:
-                    r=l2.val
-                if r<10:
-                    n.next = ListNode(r)
-                else:
-                    n.next = ListNode(r%10)
-                    a=True
-                l2,n=l2.next,n.next
-                continue
-            elif a:
-                n.next=ListNode(1)
-                a=False
-            break
+                v1 = l1.val
+                l1 = l1.next
+            if l2:
+                v2 = l2.val
+                l2 = l2.next
+            val = v1 + v2 + flag
+            flag = False
+            if val < 10:
+                n.next = ListNode(val)
+            else:
+                n.next = ListNode(val-10)
+                flag = True
+            n = n.next
         return root.next
