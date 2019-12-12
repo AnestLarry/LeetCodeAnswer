@@ -21,27 +21,29 @@
 # nums2 = [3, 4]
 
 # The median is (2 + 3)/2 = 2.5
+
+
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        # √ Accepted
-        # √ 2084/2084 cases passed (112 ms)
-        # √ Your runtime beats 46.98 % of python3 submissions
-        # √ Your memory usage beats 5.04 % of python3 submissions (14 MB)
-        nums=[]
-        i,j,il,jl=0,0,len(nums1),len(nums2)
-        while i<il and j<jl:
-            if nums1[i]<nums2[j]:
-                nums+=[nums1[i]]
-                i+=1
+        # Accepted
+        # 2085/2085 cases passed (100 ms)
+        # Your runtime beats 99.34 % of python3 submissions
+        # Your memory usage beats 99.43 % of python3 submissions (12.8 MB)
+        nums = []
+        i, j, il, jl = 0, 0, len(nums1), len(nums2)
+        while i < il and j < jl:
+            if nums1[i] < nums2[j]:
+                nums += [nums1[i]]
+                i += 1
             else:
-                nums+=[nums2[j]]
-                j+=1
-        if i<il:
-            nums+=nums1[i:]
+                nums += [nums2[j]]
+                j += 1
+        if i < il:
+            nums += nums1[i:]
         else:
-            nums+=nums2[j:]
-        l=len(nums)
-        if l%2==0:
-            return (nums[int(l/2)]+nums[int(l/2-1)])/2 
+            nums += nums2[j:]
+        l = len(nums)
+        if l % 2 == 0:
+            return (nums[int(l/2)]+nums[int(l/2-1)])/2
         else:
             return nums[int(l/2)]

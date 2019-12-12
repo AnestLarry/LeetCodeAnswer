@@ -27,10 +27,10 @@ public class Solution
     public double FindMedianSortedArrays(int[] nums1, int[] nums2)
     {
         // Accepted
-        // 2085/2085 cases passed (124 ms)
-        // Your runtime beats 77.82 % of csharp submissions
-        // Your memory usage beats 6.25 % of csharp submissions (27.2 MB)
-        int i = 0, j = 0, n = 0, il = nums1.Length, jl = nums2.Length;
+        // 2085/2085 cases passed (140 ms)
+        // Your runtime beats 91.58 % of csharp submissions
+        // Your memory usage beats 5.05 % of csharp submissions (27 MB)
+        int i = 0, j = 0, n = 0, il = nums1.Length, jl = nums2.Length, l = il + jl;
         int[] nums = new int[il + jl];
         while (i < il && j < jl)
         {
@@ -45,19 +45,12 @@ public class Solution
                 j++; n++;
             }
         }
-        int l = il + jl;
+        nums1 = i < il ? nums1 : nums2;
+        i = i < il ? i : j;
         while (n < l)
         {
-            if (i < il)
-            {
-                nums[n] = nums1[i];
-                i++; n++;
-            }
-            else
-            {
-                nums[n] = nums2[j];
-                j++; n++;
-            }
+            nums[n] = nums1[i];
+            i++; n++;
         }
         if (l % 2 == 0)
         {
