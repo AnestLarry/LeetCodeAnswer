@@ -22,19 +22,38 @@
 # Follow up:
 
 # Coud you solve it without converting the integer to a string?
-# √ Accepted
-#   √ 11509/11509 cases passed (88 ms)
-#   √ Your runtime beats 52.57 % of python3 submissions
-#   √ Your memory usage beats 61.88 % of python3 submissions (13.3 MB)
+
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        if x<0:
+        # Accepted
+        # 11509/11509 cases passed (52 ms)
+        # Your runtime beats 99.61 % of python3 submissions
+        # Your memory usage beats 99.64 % of python3 submissions (12.7 MB)
+        if x < 0:
             return False
-        elif x<10:
+        xs = str(x)
+        l_xs = len(xs)
+        left = []
+        if l_xs % 2 != 0:
+            left = xs[:l_xs//2+1]
+        else:
+            left = xs[:l_xs//2]
+        right = xs[l_xs//2:]
+        return left == right[::-1]
+
+    def isPalindrome2(self, x: int) -> bool:
+        # Accepted
+        # 11509/11509 cases passed (72 ms)
+        # Your runtime beats 83.15 % of python3 submissions
+        # Your memory usage beats 99.64 % of python3 submissions (12.7 MB)
+        if x < 0:
+            return False
+        elif x < 10:
             return True
-        r,rx = 0,x
-        while x >0:
-            r,x=r*10 + x%10,int(x/10)
-        if r ==rx :
+        r, rx = 0, x
+        while x > 0:
+            r, x = r*10 + x % 10, int(x/10)
+        if r == rx:
             return True
         return False

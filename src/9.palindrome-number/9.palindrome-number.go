@@ -1,3 +1,7 @@
+import (
+	"strconv"
+)
+
 /*
  * @lc app=leetcode id=9 lang=golang
  *
@@ -22,11 +26,39 @@
 // Follow up:
 
 // Coud you solve it without converting the integer to a string?
-//  √ Accepted
-//  √ 11509/11509 cases passed (8 ms)
-//  √ Your runtime beats 98.18 % of golang submissions
-//  √ Your memory usage beats 97.09 % of golang submissions (5 MB)
+
 func isPalindrome(x int) bool {
+	// Accepted
+	// 11509/11509 cases passed (8 ms)
+	// Your runtime beats 98.06 % of golang submissions
+	// Your memory usage beats 17.32 % of golang submissions (5.4 MB)
+	if x < 0 {
+		return false
+	}
+	xs := strconv.Itoa(x)
+	l_xs := len(xs)
+	var left string
+	if l_xs%2 != 0 {
+		left = xs[:int(l_xs/2)+1]
+	} else {
+		left = xs[:int(l_xs/2)]
+	}
+	right := xs[int(l_xs/2):]
+	r_l := len(right) - 1
+	for i := 0; i <= r_l; i++ {
+		if left[r_l-i] != right[i] {
+			return false
+		}
+	}
+	return true
+
+}
+
+func isPalindrome2(x int) bool {
+	// Accepted
+	// 11509/11509 cases passed (24 ms)
+	// Your runtime beats 45.67 % of golang submissions
+	// Your memory usage beats 35.68 % of golang submissions (5.2 MB)
 	if x < 0 {
 		return false
 	} else if x < 10 {
