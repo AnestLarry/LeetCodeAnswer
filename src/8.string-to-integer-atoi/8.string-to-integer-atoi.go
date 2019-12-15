@@ -1,9 +1,8 @@
-#
-# @lc app=leetcode id=8 lang=python3
-#
-# [8] String to Integer (atoi)
-#
-# Implement atoi which converts a string to an integer.
+/*
+ * @lc app=leetcode.cn id=8 lang=golang
+ *
+ * [8] String to Integer (atoi)
+ # Implement atoi which converts a string to an integer.
 
 # The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
 
@@ -44,26 +43,40 @@
 # Output: -2147483648
 # Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
 #              Thefore INT_MIN (−231) is returned.
-import re
 
+*/
 
-class Solution:
-    # Accepted
-    # 1079/1079 cases passed (36 ms)
-    # Your runtime beats 96.77 % of python3 submissions
-    # Your memory usage beats 99.79 % of python3 submissions (12.4 MB)
-    def myAtoi(self, s: str) -> int:
-        s = s.strip()
-        if not s or not s[0] in "+-0123456789":
-            return 0
-        try:
-            p = re.search(r"[+-]?[0123456789]*", s).span()
-            res = int(s[p[0]:p[1]])
-            if res >= 2147483647:
-                return 2147483647
-            elif res <= -2147483648:
-                return -2147483648
-            else:
-                return res
-        except:
-            return 0
+// @lc code=start
+func myAtoi(str string) int {
+	// Accepted
+	// 1079/1079 cases passed (0 ms)
+	// Your runtime beats 100 % of golang submissions
+	// Your memory usage beats 77.01 % of golang submissions (2.3 MB)
+	var res, ind int64 = 0, 1
+	cur := 0
+	if len(str) < 1 {
+		return 0
+	}
+	for ; cur < len(str) && str[cur] == ' '; cur++ {
+	}
+	if cur < len(str) && (str[cur] == '-' || str[cur] == '+') {
+		if str[cur] == '-' {
+			ind = -1
+		}
+		cur += 1
+	}
+	for cur < len(str) && '0' <= str[cur] && str[cur] <= '9' {
+		res = res*10 + int64(str[cur]-'0')
+		cur += 1
+		if res*ind > (1<<31)-1 || res*ind < (-1<<31) {
+			if res*ind > (1<<31)-1 {
+				return (1 << 31) - 1
+			}
+			return (-1 << 31)
+		}
+
+	}
+	return int(res * ind)
+}
+
+// @lc code=end

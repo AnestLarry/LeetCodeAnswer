@@ -1,6 +1,6 @@
-#
-# @lc app=leetcode id=8 lang=python3
-#
+/*
+ * @lc app=leetcode.cn id=8 lang=csharp
+ *
 # [8] String to Integer (atoi)
 #
 # Implement atoi which converts a string to an integer.
@@ -44,26 +44,35 @@
 # Output: -2147483648
 # Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
 #              Thefore INT_MIN (−231) is returned.
-import re
+ */
 
+// @lc code=start
+public class Solution
+{
+    public int MyAtoi(string str)
+    {
+        // Accepted
+        // 1079/1079 cases passed (76 ms)
+        // Your runtime beats 100 % of csharp submissions
+        // Your memory usage beats 25.56 % of csharp submissions (24 MB)
+        long res = 0;
+        int ind = 1, cur = 0;
+        if (str.Length == 0) return 0;
+        for (; cur < str.Length && char.IsWhiteSpace(str[cur]); cur++);
+        if (cur < str.Length && (str[cur] == '-' || str[cur] == '+'))
+        {
+            ind = str[cur++] == '-' ? -1 : 1;
+        }
+        while (cur < str.Length && '0' <= str[cur] && str[cur] <= '9')
+        {
+            res = res * 10 + (str[cur++] - '0');
+            if (res * ind > ~(1 << 31) || res * ind < (-1 << 31))
+            {
+                return res * ind > ~(1 << 31) ? (int)~(1 << 31) : (int)(-1 << 31);
+            }
+        }
+        return (int)res * ind;
+    }
+}
+// @lc code=end
 
-class Solution:
-    # Accepted
-    # 1079/1079 cases passed (36 ms)
-    # Your runtime beats 96.77 % of python3 submissions
-    # Your memory usage beats 99.79 % of python3 submissions (12.4 MB)
-    def myAtoi(self, s: str) -> int:
-        s = s.strip()
-        if not s or not s[0] in "+-0123456789":
-            return 0
-        try:
-            p = re.search(r"[+-]?[0123456789]*", s).span()
-            res = int(s[p[0]:p[1]])
-            if res >= 2147483647:
-                return 2147483647
-            elif res <= -2147483648:
-                return -2147483648
-            else:
-                return res
-        except:
-            return 0
