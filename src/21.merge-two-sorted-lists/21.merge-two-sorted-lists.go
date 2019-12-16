@@ -16,11 +16,11 @@
 
 // Input: 1->2->4, 1->3->4
 // Output: 1->1->2->3->4->4
-//  √ Accepted
-//  √ 208/208 cases passed (0 ms)
-//  √ Your runtime beats 100 % of golang submissions
-//  √ Your memory usage beats 100 % of golang submissions (2.5 MB)
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+	// Accepted
+	// 208/208 cases passed (0 ms)
+	// Your runtime beats 100 % of golang submissions
+	// Your memory usage beats 74.16 % of golang submissions (2.5 MB)
 	if l1 == nil || l2 == nil {
 		if l1 != nil {
 			return l1

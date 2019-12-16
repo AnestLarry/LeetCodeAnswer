@@ -17,38 +17,56 @@
 
 // Input: 1->2->4, 1->3->4
 // Output: 1->1->2->3->4->4
-// √ Accepted
-//   √ 208/208 cases passed (96 ms)
-//   √ Your runtime beats 54.92 % of csharp submissions
-//   √ Your memory usage beats 26.69 % of csharp submissions (23.8 MB)
-public class Solution {
-    public ListNode MergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1==null || l2==null){
-            if (l1!=null){
-                return l1;
-            }else if (l2!=null){
-                return l2;
-            }else{
-                return null;
-            }
+public class Solution
+{
+    public ListNode MergeTwoLists(ListNode l1, ListNode l2)
+    {
+        // Accepted
+        // 208/208 cases passed (108 ms)
+        // Your runtime beats 88.15 % of csharp submissions
+        // Your memory usage beats 5.36 % of csharp submissions (25 MB)
+        if (l1 == null || l2 == null)
+        {
+            return l1 != null ? l1 : l2;
+        }
+        if (l1.val <= l2.val)
+        {
+            l1.next = MergeTwoLists(l1.next, l2);
+            return l1;
+        }
+        else
+        {
+            l2.next = MergeTwoLists(l1, l2.next);
+            return l2;
+        }
+    }
+    public ListNode MergeTwoLists2(ListNode l1, ListNode l2)
+    {
+        // Accepted
+        // 208/208 cases passed (112 ms)
+        // Your runtime beats 75.8 % of csharp submissions
+        // Your memory usage beats 5.36 % of csharp submissions (24.9 MB)
+        if (l1 == null || l2 == null)
+        {
+            return l1 != null ? l1 : l2;
         }
         ListNode root = new ListNode(0);
         ListNode node = root;
-        while(l1 != null && l2 != null){
-            if (l1.val > l2.val){
+        while (l1 != null && l2 != null)
+        {
+            if (l1.val > l2.val)
+            {
                 node.next = l2;
                 l2 = l2.next;
-            }else{
-                node.next =l1;
-                l1=l1.next;
             }
-            node=node.next;
+            else
+            {
+                node.next = l1;
+                l1 = l1.next;
+            }
+            node = node.next;
         }
-        if (l1 != null){
-            node.next =l1;
-        }else{
-            node.next =l2;
-        }
+        node.next = l1 != null ? l1 : l2;
         return root.next;
     }
 }
