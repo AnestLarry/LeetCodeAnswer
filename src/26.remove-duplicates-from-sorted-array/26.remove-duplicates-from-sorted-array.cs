@@ -37,28 +37,24 @@
 // for (int i = 0; i < len; i++) {
 //     print(nums[i]);
 // }
-// √ Accepted
-//   √ 161/161 cases passed (268 ms)
-//   √ Your runtime beats 44.68 % of csharp submissions
-//   √ Your memory usage beats 17.63 % of csharp submissions (31.6 MB)
 public class Solution {
     public int RemoveDuplicates(int[] nums) {
+        // Accepted
+        // 161/161 cases passed (292 ms)
+        // Your runtime beats 96.5 % of csharp submissions
+        // Your memory usage beats 5.04 % of csharp submissions (32.3 MB)
         int end = nums.Length -1;
-        if (end<0){
-            return 0;
-        }else if (end<1){
-            return 1;
+        if (end<1){
+            return end<0?0:1;
         }
         int v=1,now=0,num =1;
         while (v<=end){
-            if(nums[v]==nums[now]){
-                v+=1;
-            }else{
+            if(nums[v]!=nums[now]){
                 nums[num] = nums[v];
                 now = v;
-                v+=1;
                 num+=1;
             }
+            v+=1;
         }
         return num;
     }

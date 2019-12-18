@@ -37,11 +37,11 @@
 // for (int i = 0; i < len; i++) {
 //     print(nums[i]);
 // }
-//  √ Accepted
-//   √ 161/161 cases passed (44 ms)
-//   √ Your runtime beats 93.66 % of golang submissions
-//   √ Your memory usage beats 75.95 % of golang submissions (7.6 MB)
 func removeDuplicates(nums []int) int {
+	// Accepted
+	// 161/161 cases passed (4 ms)
+	// Your runtime beats 99.88 % of golang submissions
+	// Your memory usage beats 100 % of golang submissions (4.6 MB)
 	end := len(nums)
 	if end < 1 {
 		return 0
@@ -50,11 +50,10 @@ func removeDuplicates(nums []int) int {
 	}
 	v, now, num := 1, 0, 1
 	for v < end {
-		if nums[v] == nums[now] {
-			v += 1
-		} else {
-			nums[num], v, now, num = nums[v], v+1, v, num+1
+		if nums[v] != nums[now] {
+			nums[num], now, num = nums[v], v, num+1
 		}
+		v += 1
 	}
 	return num
 }

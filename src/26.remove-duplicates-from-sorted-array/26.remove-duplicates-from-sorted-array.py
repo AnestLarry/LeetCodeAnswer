@@ -37,21 +37,20 @@
 # for (int i = 0; i < len; i++) {
 #     print(nums[i]);
 # }
-# √ Accepted
-#   √ 161/161 cases passed (56 ms)
-#   √ Your runtime beats 91.86 % of python3 submissions
-#   √ Your memory usage beats 41.06 % of python3 submissions (14.8 MB)
+
+
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
+        # Accepted
+        # 161/161 cases passed (68 ms)
+        # Your runtime beats 100 % of python3 submissions
+        # Your memory usage beats 99.34 % of python3 submissions (14.4 MB)
         end = len(nums)
-        if end<1:
-            return 0
-        elif end<2:
-            return 1
-        v,now,num = 1,0,1
-        while v<end:
-            if nums[v]==nums[now]:
-                v+=1
-            else:
-                nums[num],now,v,num = nums[v],v,v+1,num+1
+        if end < 2:
+            return 0 if end < 1 else 1
+        v, now, num = 1, 0, 1
+        while v < end:
+            if nums[v] != nums[now]:
+                nums[num], now, num = nums[v], v, num+1
+            v += 1
         return num
