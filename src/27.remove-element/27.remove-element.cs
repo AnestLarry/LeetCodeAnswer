@@ -41,13 +41,13 @@
 // for (int i = 0; i < len; i++) {
 //     print(nums[i]);
 // }
-// √ Accepted
-//   √ 113/113 cases passed (244 ms)
-//   √ Your runtime beats 97.69 % of csharp submissions
-//   √ Your memory usage beats 32.74 % of csharp submissions (28.4 MB)
 public class Solution {
     public int RemoveElement(int[] nums, int val) {
-        int i=0,j=nums.Length-1,temp=0;
+        // Accepted
+        // 113/113 cases passed (280 ms)
+        // Your runtime beats 88.67 % of csharp submissions
+        // Your memory usage beats 6.43 % of csharp submissions (29.2 MB)
+        int i=0,j=nums.Length-1,temp;
         while (i<=j){
             if (nums[i]==val){
                 temp=nums[i];

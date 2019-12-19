@@ -41,18 +41,16 @@
 // for (int i = 0; i < len; i++) {
 //     print(nums[i]);
 // }
-// √ Accepted
-//   √ 113/113 cases passed (0 ms)
-//   √ Your runtime beats 100 % of golang submissions
-//   √ Your memory usage beats 41.16 % of golang submissions (2.4 MB)
 func removeElement(nums []int, val int) int {
-	i, j, t := 0, len(nums)-1, 0
+	// Accepted
+	// 113/113 cases passed (0 ms)
+	// Your runtime beats 100 % of golang submissions
+	// Your memory usage beats 100 % of golang submissions (2.1 MB)
+	i, j := 0, len(nums)-1
 	for i <= j {
 		if nums[i] == val {
-			t = nums[i]
-			nums[i] = nums[j]
-			nums[j] = t
-			j = j - 1
+			nums[i], nums[j] = nums[j], nums[i]
+			j -= 1
 		} else {
 			i += 1
 		}

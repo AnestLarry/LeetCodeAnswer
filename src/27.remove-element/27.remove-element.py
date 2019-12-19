@@ -5,7 +5,7 @@
 #
 # Note : in this question , it is no important that you had delete element,you need to sort the list,and return the list index have not the val.
 
-# Offical Answer 
+# Offical Answer
 
 # Given an array nums and a value val, remove all instances of that value in-place and return the new length.
 
@@ -45,17 +45,18 @@
 # for (int i = 0; i < len; i++) {
 #     print(nums[i]);
 # }
-# √ Accepted
-#   √ 113/113 cases passed (40 ms)
-#   √ Your runtime beats 56.67 % of python3 submissions
-#   √ Your memory usage beats 54.28 % of python3 submissions (13.2 MB)
+
+
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        i,j = 0,len(nums)-1
-        while i<=j:
-            if nums[i]==val:
-                nums[i],nums[j],j = nums[j],nums[i],j-1
+        # Accepted
+        # 113/113 cases passed (32 ms)
+        # Your runtime beats 98.36 % of python3 submissions
+        # Your memory usage beats 99.31 % of python3 submissions (12.7 MB)
+        i, j = 0, len(nums)-1
+        while i <= j:
+            if nums[i] == val:
+                nums[i], nums[j], j = nums[j], nums[i], j-1
             else:
-                i+=1
+                i += 1
         return i
-        
