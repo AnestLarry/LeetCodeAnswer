@@ -19,27 +19,34 @@
 // Note:
 
 // All given inputs are in lowercase letters a-z.
-// √ Accepted
-//   √ 118/118 cases passed (108 ms)
-//   √ Your runtime beats 60.4 % of csharp submissions
-//   √ Your memory usage beats 42.36 % of csharp submissions (22.6 MB)
-public class Solution {
-    public string LongestCommonPrefix(string[] strs) {
+public class Solution
+{
+    public string LongestCommonPrefix(string[] strs)
+    {
+        // Accepted
+        // 118/118 cases passed (116 ms)
+        // Your runtime beats 91.41 % of csharp submissions
+        // Your memory usage beats 11.29 % of csharp submissions (23.7 MB)
         string res = "";
-        if(strs==null || strs.Length==0){
-            return res;
-        }else if(strs.Length==1){
-            return strs[0];
+        if (strs == null || strs.Length == 0 || strs.Length == 1)
+        {
+            return strs.Length == 1 ? strs[0] : res;
         }
-        for (int i = 0 ; i<strs[0].Length;i++){
-            try{
-                foreach(string s in strs){
-                    if(strs[0][i]!=s[i]){
+        for (int i = 0; i < strs[0].Length; i++)
+        {
+            try
+            {
+                foreach (string s in strs)
+                {
+                    if (strs[0][i] != s[i])
+                    {
                         return res;
                     }
                 }
-                res+=strs[0][i];
-            }catch{
+                res += strs[0][i];
+            }
+            catch
+            {
                 return res;
             }
         }

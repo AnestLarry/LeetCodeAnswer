@@ -19,15 +19,17 @@
 # Note:
 
 # All given inputs are in lowercase letters a-z.
-# √ Accepted
-#   √ 118/118 cases passed (36 ms)
-#   √ Your runtime beats 81.86 % of python3 submissions
-#   √ Your memory usage beats 62.52 % of python3 submissions (13.2 MB)
+
+
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        res=""
+        # Accepted
+        # 118/118 cases passed (36 ms)
+        # Your runtime beats 94.02 % of python3 submissions
+        # Your memory usage beats 99.68 % of python3 submissions (12.8 MB)
+        res = ""
         for i in zip(*strs):
-            if len(set(i))>1:
+            if len(set(i)) > 1:
                 break
-            res+=i[0]
+            res += i[0]
         return res
