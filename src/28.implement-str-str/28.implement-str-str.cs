@@ -24,10 +24,10 @@ public class Solution
 {
     public int StrStr(string haystack, string needle)
     {
-        // √ Accepted
-        //   √ 74/74 cases passed (80 ms)
-        //   √ Your runtime beats 68.45 % of csharp submissions
-        //   √ Your memory usage beats 6.67 % of csharp submissions (21.6 MB)
+        // Accepted
+        // 74/74 cases passed (88 ms)
+        // Your runtime beats 82.39 % of csharp submissions
+        // Your memory usage beats 5.59 % of csharp submissions (21.9 MB)
         if (needle == null)
         {
             return 0;
