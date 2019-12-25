@@ -23,20 +23,51 @@
 
 // Input: [1,3,5,6], 0
 // Output: 0
-// √ Accepted
-//   √ 62/62 cases passed (112 ms)
-//   √ Your runtime beats 13.09 % of csharp submissions
-//   √ Your memory usage beats 92.95 % of csharp submissions (22.3 MB)
-public class Solution {
-    public int SearchInsert(int[] nums, int target) {
-        int i=0,l=nums.Length;
-        while(i<l){
-            if (nums[i]>=target){
+
+public class Solution
+{
+    public int SearchInsert(int[] nums, int target)
+    {
+        // Accepted
+        // 62/62 cases passed (108 ms)
+        // Your runtime beats 89.6 % of csharp submissions
+        // Your memory usage beats 5.71 % of csharp submissions (24.1 MB)
+        int i = 0, l = nums.Length;
+        while (i < l)
+        {
+            if (nums[i] >= target)
+            {
                 return i;
             }
             i++;
         }
         return l;
+    }
+    public int SearchInsert2(int[] nums, int target)
+    {
+        // Accepted
+        // 62/62 cases passed (100 ms)
+        // Your runtime beats 99.08 % of csharp submissions
+        // Your memory usage beats 5.71 % of csharp submissions (23.9 MB)
+        int left = 0, right = nums.Length - 1, mid;
+        while (left <= right)
+        {
+            mid = (left + right) >> 1;
+            if (nums[mid] == target)
+            {
+                return mid;
+            }
+            if (nums[mid] < target)
+            {
+                left = mid + 1;
+            }
+            else
+            {
+                right = mid - 1;
+            }
+        }
+        return left;
+
     }
 }
 

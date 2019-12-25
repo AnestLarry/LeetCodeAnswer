@@ -23,16 +23,33 @@
 
 # Input: [1,3,5,6], 0
 # Output: 0
-# √ Accepted
-#   √ 62/62 cases passed (40 ms)
-#   √ Your runtime beats 40.87 % of python3 submissions
-#   √ Your memory usage beats 73.71 % of python3 submissions (13.6 MB)
+
+
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        i,l=0,len(nums)
-        while i<l:
-            if nums[i]>=target:
+        # Accepted
+        # 62/62 cases passed (36 ms)
+        # Your runtime beats 100 % of python3 submissions
+        # Your memory usage beats 99.85 % of python3 submissions (13.4 MB)
+        i = 0
+        while i < len(nums):
+            if nums[i] >= target:
                 return i
-            i+=1
-        return l
+            i += 1
+        return len(nums)
 
+    def searchInsert2(self, nums: List[int], target: int) -> int:
+        # Accepted
+        # 62/62 cases passed (44 ms)
+        # Your runtime beats 99.84 % of python3 submissions
+        # Your memory usage beats 99.95 % of python3 submissions (13.3 MB)
+        left, right = 0, len(nums)-1
+        while left <= right:
+            mid = (left+right)//2
+            if nums[mid] == target:
+                return mid
+            if nums[mid] < target:
+                left = mid+1
+            else:
+                right = mid-1
+        return left
