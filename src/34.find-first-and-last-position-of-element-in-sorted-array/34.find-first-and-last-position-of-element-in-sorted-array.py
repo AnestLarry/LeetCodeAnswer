@@ -17,26 +17,26 @@
 
 # Input: nums = [5,7,7,8,8,10], target = 6
 # Output: [-1,-1]
-# √ Accepted
-#   √ 88/88 cases passed (88 ms)
-#   √ Your runtime beats 99.6 % of python3 submissions
-#   √ Your memory usage beats 5.36 % of python3 submissions (15 MB)
+
+
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        first,last,l = -1,-1,len(nums)
+        # Accepted
+        # 88/88 cases passed (92 ms)
+        # Your runtime beats 98.06 % of python3 submissions
+        # Your memory usage beats 59 % of python3 submissions (13.8 MB)
         if not nums:
-            return [first,last]
+            return (-1, -1)
+        first, last, l = -1, -1, len(nums)
         for i in range(l):
-            if nums[i]<target:
+            if nums[i] < target:
                 continue
-            elif nums[i]==target:
-                first=last=i
-                for j in range(i,l):
-                    if nums[j]==nums[i]:
-                        last=j
+            elif nums[i] == target:
+                first = last = i
+                for j in range(i, l):
+                    if nums[j] == nums[i]:
+                        last = j
                     else:
-                        return [first,last]
-                return [first,last]
-            else:
-                return [first,last]
-        return [first,last]
+                        return (first, last)
+            break
+        return (first, last)
