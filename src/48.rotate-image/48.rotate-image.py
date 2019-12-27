@@ -13,7 +13,7 @@
 
 # Example 1:
 
-# Given input matrix = 
+# Given input matrix =
 # [
 #   [1,2,3],
 #   [4,5,6],
@@ -34,7 +34,7 @@
 #   [ 2, 4, 8,10],
 #   [13, 3, 6, 7],
 #   [15,14,12,16]
-# ], 
+# ],
 
 # rotate the input matrix in-place such that it becomes:
 # [
@@ -43,14 +43,26 @@
 #   [12, 6, 8, 9],
 #   [16, 7,10,11]
 # ]
-# √ Accepted
-#   √ 21/21 cases passed (48 ms)
-#   √ Your runtime beats 13.01 % of python3 submissions
-#   √ Your memory usage beats 5.7 % of python3 submissions (13.8 MB)
 # Note : https://docs.python.org/3.7/library/functions.html#zip
+
+
 class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None:
+    def rotate(self, matrix):
+        # Accepted
+        # 21/21 cases passed (36 ms)
+        # Your runtime beats 95.22 % of python3 submissions
+        # Your memory usage beats 100 % of python3 submissions (12.8 MB)
+        matrix.reverse()
+        for i in range(len(matrix)):
+            for j in range(i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+
+    def rotate2(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        matrix[:]=zip(*matrix[::-1])
+        # Accepted
+        # 21/21 cases passed (36 ms)
+        # Your runtime beats 95.22 % of python3 submissions
+        # Your memory usage beats 100 % of python3 submissions (12.7 MB)
+        matrix[:] = zip(*matrix[::-1])
