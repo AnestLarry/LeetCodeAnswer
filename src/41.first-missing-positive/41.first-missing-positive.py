@@ -23,12 +23,25 @@
 
 # Your algorithm should run in O(n) time and uses constant extra space.
 
+
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         # Accepted
         # 165/165 cases passed (32 ms)
-        # Your runtime beats 97.5 % of python3 submissions
-        # Your memory usage beats 100 % of python3 submissions (12.8 MB)
+        # Your runtime beats 98.95 % of python3 submissions
+        # Your memory usage beats 99.57 % of python3 submissions (12.5 MB)
+        if nums:
+            for i in range(1, len(nums)+2):
+                if not i in nums:
+                    return i
+        else:
+            return 1
+
+    def firstMissingPositive2(self, nums: List[int]) -> int:
+        # Accepted
+        # 165/165 cases passed (36 ms)
+        # Your runtime beats 95.11 % of python3 submissions
+        # Your memory usage beats 99.57 % of python3 submissions (12.7 MB)
         nums = [x for x in nums if x > 0]
         if nums:
             for i in range(1, max(nums)+2):
@@ -36,5 +49,4 @@ class Solution:
                     return i
         else:
             return 1
-
 # @lc code=end

@@ -25,9 +25,9 @@ func firstMissingPositive(nums []int) int {
 	// Accepted
 	// 165/165 cases passed (0 ms)
 	// Your runtime beats 100 % of golang submissions
-	// Your memory usage beats 100 % of golang submissions (2.2 MB)
+	// Your memory usage beats 79.37 % of golang submissions (2.2 MB)
 	for i := 1; i < len(nums)+2; i++ {
-		if i > 0 && Finder(nums, i) == false {
+		if Finder(nums, i) == false {
 			return i
 		}
 	}
