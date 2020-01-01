@@ -22,24 +22,26 @@
 
 # -100.0 < x < 100.0
 # n is a 32-bit signed integer, within the range [−231, 231 − 1]
-# √ Accepted
-#   √ 304/304 cases passed (1320 ms)
-#   √ Your runtime beats 7.41 % of python3 submissions
-#   √ Your memory usage beats 72.96 % of python3 submissions (13.1 MB)
+
+
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        #return x**n
-        res=1
-        if x == 1:
-            return 1
-        elif x == -1 :
-            if n%2 == 0:
-                return 1
-            return -1
-        if n < 0 :
-            x=1/x
-            n*=-1
-        while n>0 and round(res,5)!=0:
-            res*=x
-            n-=1
-        return round(res,5)
+        # Accepted
+        # 304/304 cases passed (24 ms)
+        # Your runtime beats 99.43 % of python3 submissions
+        # Your memory usage beats 99.51 % of python3 submissions (12.7 MB)
+        m = n < 0
+        p = 1.0
+        while n != 0:
+            if (n & 1) == 1:
+                p *= x
+            x *= x
+            n = int(n/2)
+        return 1/p if m else p
+
+    def myPow2(self, x: float, n: int) -> float:
+        # Accepted
+        # 304/304 cases passed (24 ms)
+        # Your runtime beats 99.43 % of python3 submissions
+        # Your memory usage beats 99.51 % of python3 submissions (12.7 MB)
+        return x**n

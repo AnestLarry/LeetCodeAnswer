@@ -21,37 +21,30 @@ Note:
 
 -100.0 < x < 100.0
 n is a 32-bit signed integer, within the range [−231, 231 − 1]
-√ Accepted
-  √ 304/304 cases passed (72 ms)
-  √ Your runtime beats 6.15 % of csharp submissions
-  √ Your memory usage beats 65.9 % of csharp submissions (13.2 MB)
  */
-public class Solution {
-    public double MyPow(double x, int n) {
-        //return Math.Pow(x,n);
-        double res=1.0;
-        if (x==1.0){
-            return 1.0;
-        }else if(x==-1.0){
-            if (n%2==0){
-                return 1.0;
-            }
-            return -1.0;
+public class Solution
+{
+    public double MyPow(double x, int n)
+    {
+        // Accepted
+        // 304/304 cases passed (52 ms)
+        // Your runtime beats 81.19 % of csharp submissions
+        // Your memory usage beats 8 % of csharp submissions (14.7 MB)
+        return Math.Pow(x, n);
+    }
+    public double MyPow2(double x, int n)
+    {
+        // Accepted
+        // 304/304 cases passed (44 ms)
+        // Your runtime beats 99.01 % of csharp submissions
+        // Your memory usage beats 8 % of csharp submissions (14.6 MB)
+        bool m = n<0;
+        double p = 1;
+        for (; n != 0; n /= 2)
+        {
+            if ((n & 1) == 1) p *= x;
+            x *= x;
         }
-        checked { 
-            try { 
-                if (n<0){
-                    x = 1/x;
-                    n*=-1;
-                }
-                while(n>0 && Math.Round(res,5)!=0.0){
-                  res*=x;
-                  n-=1;
-                }
-                return res;
-            } catch (OverflowException oEx) {
-                return 0.0;
-            } 
-        }
+        return m ? 1 / p : p;
     }
 }
