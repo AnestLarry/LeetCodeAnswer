@@ -19,30 +19,18 @@ public class Solution
     public int MaxSubArray(int[] nums)
     {
         // Accepted
-        // 202/202 cases passed (96 ms)
-        // Your runtime beats 84.72 % of csharp submissions
-        // Your memory usage beats 10 % of csharp submissions (25 MB)
-        int nums_len = nums.Length, maxnum = nums[0];
-        if (nums_len == 1)
+        // 202/202 cases passed (100 ms)
+        // Your runtime beats 99.68 % of csharp submissions
+        // Your memory usage beats 5.88 % of csharp submissions (24.3 MB)
+        int maxnum = nums[0],dp = nums[0];
+        if (nums.Length == 1)
         {
             return nums[0];
         }
-        int[] dp = new int[nums_len];
-        dp[0] = nums[0];
-        foreach (int i in Enumerable.Range(1, nums_len - 1))
+        for (int i = 1; i < nums.Length; i++)
         {
-            if (dp[i - 1] > 0)
-            {
-                dp[i] = dp[i - 1] + nums[i];
-            }
-            else
-            {
-                dp[i] = nums[i];
-            }
-            if (dp[i] > maxnum)
-            {
-                maxnum = dp[i];
-            }
+            dp = dp > 0 ? dp + nums[i] : nums[i];
+            maxnum = dp > maxnum?dp:maxnum;
         }
         return maxnum;
     }

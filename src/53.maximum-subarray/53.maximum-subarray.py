@@ -18,37 +18,31 @@
 
 
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
+    def maxSubArray1(self, nums: List[int]) -> int:
         # Accepted
         # 202/202 cases passed (68 ms)
-        # Your runtime beats 98.48 % of python3 submissions
-        # Your memory usage beats 5.69 % of python3 submissions (14.7 MB)
+        # Your runtime beats 98.63 % of python3 submissions
+        # Your memory usage beats 73.5 % of python3 submissions (13.6 MB)
         nums_len = len(nums)
         if nums_len == 1:
             return nums[0]
         bl = maxnum = nums[0]
         for i in range(1, nums_len):
-            if bl > 0:
-                bl += nums[i]
-            else:
-                bl = nums[i]
+            bl = bl+nums[i] if bl > 0 else nums[i]
             if bl > maxnum:
                 maxnum = bl
         return maxnum
 
-    def maxSubArray2(self, nums: List[int]) -> int:
+    def maxSubArray(self, nums: List[int]) -> int:
         # Accepted
         # 202/202 cases passed (64 ms)
-        # Your runtime beats 99.75 % of python3 submissions
-        # Your memory usage beats 5.69 % of python3 submissions (14.6 MB)
+        # Your runtime beats 99.54 % of python3 submissions
+        # Your memory usage beats 40.49 % of python3 submissions (13.7 MB)
         nums_len = len(nums)
         if nums_len == 1:
             return nums[0]
         bl = [nums[0]]+[0]*(nums_len-1)
         for i in range(1, nums_len):
-            if bl[i-1] > 0:
-                bl[i] = bl[i-1]+nums[i]
-            else:
-                bl[i] = nums[i]
+            bl[i] = bl[i-1]+nums[i] if bl[i-1] > 0 else nums[i]
         return max(bl)
 # @lc code=end

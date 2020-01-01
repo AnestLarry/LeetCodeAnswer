@@ -19,23 +19,16 @@ int maxSubArray(int *nums, int numsSize)
 {
     // Accepted
     // 202/202 cases passed (8 ms)
-    // Your runtime beats 66.89 % of c submissions
-    // Your memory usage beats 94.74 % of c submissions (7.5 MB)
+    // Your runtime beats 88.41 % of c submissions
+    // Your memory usage beats 82.17 % of c submissions (7.6 MB)
     if (numsSize == 1)
     {
         return nums[0];
     }
-    int bl = nums[0], maxnum = nums[0], i = 1;
+    int bl = nums[0], maxnum = nums[0], i;
     for (i = 1; i < numsSize; i++)
     {
-        if (bl > 0)
-        {
-            bl += nums[i];
-        }
-        else
-        {
-            bl = nums[i];
-        }
+        bl = bl > 0 ? bl + nums[i] : nums[i];
         if (bl > maxnum)
         {
             maxnum = bl;

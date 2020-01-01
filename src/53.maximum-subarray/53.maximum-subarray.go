@@ -17,14 +17,13 @@ If you have figured out the O(n) solution, try coding another solution using the
 func maxSubArray(nums []int) int {
 	// Accepted
 	// 202/202 cases passed (4 ms)
-	// Your runtime beats 97.21 % of golang submissions
-	// Your memory usage beats 57.14 % of golang submissions (3.3 MB)
+	// Your runtime beats 96.79 % of golang submissions
+	// Your memory usage beats 88.26 % of golang submissions (3.3 MB)
 	nums_len := len(nums)
 	if nums_len == 1 {
 		return nums[0]
 	}
-	bl := nums[0]
-	maxnum := nums[0]
+	bl, maxnum := nums[0], nums[0]
 	for i := 1; i < nums_len; i += 1 {
 		if bl > 0 {
 			bl = bl + nums[i]
