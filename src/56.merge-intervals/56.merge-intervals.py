@@ -3,10 +3,6 @@
 #
 # [56] Merge Intervals
 #
-# √ Accepted
-#   √ 169/169 cases passed (100 ms)
-#   √ Your runtime beats 75.63 % of python3 submissions
-#   √ Your memory usage beats 6.52 % of python3 submissions (16 MB)
 # Given a collection of intervals, merge all overlapping intervals.
 
 # Example 1:
@@ -20,10 +16,16 @@
 # Output: [[1,5]]
 # Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 # NOTE: input types have been changed on April 15, 2019. Please reset to default code definition to get new method signature.
+
+
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        i=0
-        if len(intervals)==1:
+        # Accepted
+        # 169/169 cases passed (100 ms)
+        # Your runtime beats 91.08 % of python3 submissions
+        # Your memory usage beats 100 % of python3 submissions (14.7 MB)
+        i = 0
+        if len(intervals) == 1:
             return intervals
         intervals.sort()
         while i < len(intervals)-1:
@@ -33,5 +35,18 @@ class Solution:
                 else:
                     del intervals[i+1]
             else:
-                i+=1
+                i += 1
         return intervals
+
+    def merge2(self, intervals):
+        # Accepted
+        # 169/169 cases passed (96 ms)
+        # Your runtime beats 95.48 % of python3 submissions
+        # Your memory usage beats 100 % of python3 submissions (14.6 MB)
+        out = []
+        for i in sorted(intervals, key=lambda i: i[0]):
+            if out and i[0] <= out[-1][1]:
+                out[-1][1] = max(out[-1][1], i[1])
+            else:
+                out += i,
+        return out
