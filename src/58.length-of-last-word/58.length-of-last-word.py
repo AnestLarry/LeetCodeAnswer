@@ -13,23 +13,37 @@
 
 # Input: "Hello World"
 # Output: 5
-# √ Accepted
-#   √ 59/59 cases passed (24 ms)
-#   √ Your runtime beats 99.68 % of python3 submissions
-#   √ Your memory usage beats 14.23 % of python3 submissions (13.3 MB)
+
+
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
-        s=s.strip()
-        l=len(s)
+        # Accepted
+        # 59/59 cases passed (24 ms)
+        # Your runtime beats 97.88 % of python3 submissions
+        # Your memory usage beats 53.63 % of python3 submissions (13.2 MB)
+        r, res = len(s)-1, 0
+        while r > -1 and s[r] == " ":
+            r -= 1
+        while r > -1 and s[r] != " ":
+            r -= 1
+            res += 1
+        return res
+
+    def lengthOfLastWord2(self, s: str) -> int:
+        # Accepted
+        # 59/59 cases passed (24 ms)
+        # Your runtime beats 97.88 % of python3 submissions
+        # Your memory usage beats 53.68 % of python3 submissions (13.1 MB)
+        s = s.strip()
+        l = len(s)
         if self.checkword(s):
-            try:
-                return l- s.rindex(" ") -1
-            except:
+            if " " in s:
+                return l - s.rindex(" ") - 1
+            else:
                 return l
-        print("not in low")
         return 0
-        
-    def checkword(self,n):
+
+    def checkword(self, n):
         for i in "abcdefghijklmnopqrstuvwxyz":
             if i in n:
                 return True

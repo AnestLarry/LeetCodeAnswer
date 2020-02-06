@@ -13,31 +13,14 @@
 
 // Input: "Hello World"
 // Output: 5
-//  √ Accepted
-//   √ 59/59 cases passed (88 ms)
-//   √ Your runtime beats 19.39 % of csharp submissions
-//   √ Your memory usage beats 5 % of csharp submissions (21.2 MB)
 public class Solution {
-    public int LengthOfLastWord(string s) {
-        s=s.Trim();
-        int l = s.Length;
-        if (Checkword(s)){
-            try{
-                return l-s.LastIndexOf(" ")-1;
-            }catch{
-                return l;
-            }
-        }
-        return 0;
-    }
-    public bool Checkword(string s){
-        string word = "abcdefghijklmnopqrstuvwxyz";
-        int l =word.Length;
-        for (int i =0 ; i<l;i++){
-            if(s.Contains(word[i])){
-                return true;
-            }
-        }
-        return false;
+    public int LengthOfLastWord (string s) {
+        // Accepted
+        // 59/59 cases passed (76 ms)
+        // Your runtime beats 100 % of csharp submissions
+        // Your memory usage beats 71.7 % of csharp submissions (21.3 MB)        int r = s.Length - 1, res = 0;
+        while (r > -1 && s[r] == ' ') --r;
+        while (r > -1 && s[r] != ' ') {--r;++res; }
+        return res;
     }
 }
