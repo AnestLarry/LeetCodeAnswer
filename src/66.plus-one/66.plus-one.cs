@@ -19,33 +19,32 @@ Example 2:
 Input: [4,3,2,1]
 Output: [4,3,2,2]
 Explanation: The array represents the integer 4321.
-√ Accepted
-  √ 109/109 cases passed (252 ms)
-  √ Your runtime beats 45.66 % of csharp submissions
-  √ Your memory usage beats 59.57 % of csharp submissions (28.2 MB)
  */
 public class Solution {
-    public int[] PlusOne(int[] digits) {
-        if (digits == new int[] { 0}) {
-            return new int[]  { 1};
+    public int[] PlusOne (int[] digits) {
+        // Accepted
+        // 109/109 cases passed (276 ms)
+        // Your runtime beats 90.34 % of csharp submissions
+        // Your memory usage beats 59.18 % of csharp submissions (29.1 MB)
+        if (digits == new int[] { 0 }) {
+            return new int[] { 1 };
         }
-        int l = digits.Length-1;
-        return add(digits,l);
+        int l = digits.Length - 1;
+        return add (digits, l);
     }
-    public int[] add(int[] arr,int p){
-        if (p<0){
-            int[] res = new int[arr.Length+1];
-            res[0]=1;
-            Array.ConstrainedCopy(arr, 0, res, 1, arr.Length);
+    public int[] add (int[] arr, int p) {
+        if (p < 0) {
+            int[] res = new int[arr.Length + 1];
+            res[0] = 1;
+            Array.ConstrainedCopy (arr, 0, res, 1, arr.Length);
             return res;
         }
-        arr[p]+=1;
-        if (arr[p]<10){
+        arr[p] += 1;
+        if (arr[p] < 10) {
             return arr;
-        }else{
-            arr[p]-=10;
-            return add(arr,p-1);
+        } else {
+            arr[p] -= 10;
+            return add (arr, p - 1);
         }
     }
 }
-

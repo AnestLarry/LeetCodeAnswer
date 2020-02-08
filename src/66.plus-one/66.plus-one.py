@@ -19,23 +19,25 @@
 # Input: [4,3,2,1]
 # Output: [4,3,2,2]
 # Explanation: The array represents the integer 4321.
-# √ Accepted
-#   √ 109/109 cases passed (32 ms)
-#   √ Your runtime beats 96.19 % of python3 submissions
-#   √ Your memory usage beats 29.8 % of python3 submissions (13.2 MB)
+
+
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        if digits==[0]:
+        # Accepted
+        # 109/109 cases passed (32 ms)
+        # Your runtime beats 87.96 % of python3 submissions
+        # Your memory usage beats 54.55 % of python3 submissions (13.3 MB)
+        if digits == [0]:
             return [1]
-        l=len(digits)-1
-        return self.add(digits,l)
-    
-    def add(self, arr,p):
-        if p<0:
+        l = len(digits)-1
+        return self.add(digits, l)
+
+    def add(self, arr, p):
+        if p < 0:
             return [1]+arr
-        arr[p]+=1
-        if arr[p]<10:
+        arr[p] += 1
+        if arr[p] < 10:
             return arr
         else:
             arr[p] -= 10
-            return self.add(arr,p-1)
+            return self.add(arr, p-1)
