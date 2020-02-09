@@ -17,29 +17,30 @@
 
 # Input: 8
 # Output: 2
-# Explanation: The square root of 8 is 2.82842..., and since 
+# Explanation: The square root of 8 is 2.82842..., and since
 #              the decimal part is truncated, 2 is returned.
+
+
 class Solution:
     def mySqrt(self, x: int) -> int:
-        # √ Accepted
-        #   √ 1017/1017 cases passed (36 ms)
-        #   √ Your runtime beats 93.86 % of python3 submissions
-        #   √ Your memory usage beats 6.45 % of python3 submissions (14 MB)
-        if x==0:
-            return 0
-        guess,temp = x * (2/x),0
+        # Accepted
+        # 1017/1017 cases passed (32 ms)
+        # Your runtime beats 94.74 % of python3 submissions
+        # Your memory usage beats 53.22 % of python3 submissions (13 MB)
+        if x in (0, 1):
+            return x
+        guess, temp = x * (2/x), 0
         while True:
-            guess=(guess+x/guess)/2
+            guess = (guess+x/guess)/2
             if temp == int(guess):
                 break
             else:
-                temp=int(guess)
+                temp = int(guess)
         return int(guess)
 
     def mySqrt2(self, x: int) -> int:
-        # √ Accepted
-        #   √ 1017/1017 cases passed (40 ms)
-        #   √ Your runtime beats 81.17 % of python3 submissions
-        #   √ Your memory usage beats 6.45 % of python3 submissions (13.9 MB)
+        # Accepted
+        # 1017/1017 cases passed (24 ms)
+        # Your runtime beats 99.82 % of python3 submissions
+        # Your memory usage beats 53.22 % of python3 submissions (13 MB)
         return int(x**0.5)
-
