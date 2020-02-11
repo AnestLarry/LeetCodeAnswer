@@ -7,13 +7,13 @@
 
 # Example 1:
 
-# Input: 
+# Input:
 # [
 #   [1,1,1],
 #   [1,0,1],
 #   [1,1,1]
 # ]
-# Output: 
+# Output:
 # [
 #   [1,0,1],
 #   [0,0,0],
@@ -21,13 +21,13 @@
 # ]
 # Example 2:
 
-# Input: 
+# Input:
 # [
 #   [0,1,2,0],
 #   [3,4,5,2],
 #   [1,3,1,5]
 # ]
-# Output: 
+# Output:
 # [
 #   [0,0,0,0],
 #   [0,4,5,0],
@@ -38,25 +38,48 @@
 # A straight forward solution using O(mn) space is probably a bad idea.
 # A simple improvement uses O(m + n) space, but still not the best solution.
 # Could you devise a constant space solution?
-# √ Accepted
-#   √ 159/159 cases passed (148 ms)
-#   √ Your runtime beats 5.66 % of python3 submissions
-#   √ Your memory usage beats 5.25 % of python3 submissions (14.6 MB)
+
+
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        ml,l=len(matrix),len(matrix[0])
-        z=[]
+        # Accepted
+        # 159/159 cases passed (136 ms)
+        # Your runtime beats 92.38 % of python3 submissions
+        # Your memory usage beats 51.83 % of python3 submissions (13.6 MB)
+        ml, l = len(matrix), len(matrix[0])
+        z = []
         for i in range(ml):
             if matrix[i].count(0) > 0:
                 for j in range(l):
-                    if matrix[i][j]==0:
-                        z+=[(i,j)]
+                    if matrix[i][j] == 0:
+                        z += [(i, j)]
+        # Readable Code
+        # Accepted
+        # 159/159 cases passed (144 ms)
+        # Your runtime beats 80.1 % of python3 submissions
+        # Your memory usage beats 51.83 % of python3 submissions (13.7 MB)
+        #
+        # if z != []:
+        #     for i in z:
+        #         for j in range(l):
+        #             matrix[i[0]][j]=0
+        #         for j in range(ml):
+        #             matrix[j][i[1]]=0
         if z != []:
-            for i in z:
-                for j in range(l):
-                    matrix[i[0]][j]=0
-                for j in range(ml):
-                    matrix[j][i[1]]=0
+            if l > ml:
+                for i in z:
+                    for j in range(ml, l):
+                        matrix[i[0]][j] = 0
+                    for j in range(ml):
+                        matrix[i[0]][j] = 0
+                        matrix[j][i[1]] = 0
+            else:
+                for i in z:
+                    for j in range(l):
+                        matrix[i[0]][j] = 0
+                        matrix[j][i[1]] = 0
+                    for j in range(l, ml):
+                        matrix[j][i[1]] = 0

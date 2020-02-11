@@ -43,23 +43,61 @@
 //   √ Your runtime beats 14.83 % of csharp submissions
 //   √ Your memory usage beats 22.3 % of csharp submissions (31.8 MB)
 public class Solution {
-    public void SetZeroes(int[][] matrix) {
-        int ml=matrix.Length,l=matrix[0].Length;
-         List<List<int>> z = new List<List<int>>();
-        for(int i =0;i<ml;i++){
-            for(int j =0;j<l;j++){
-                if(matrix[i][j]==0){
-                    z.Add(new List<int>(new int[] { i,j }));
+    // Accepted
+    // 159/159 cases passed (312 ms)
+    // Your runtime beats 100 % of csharp submissions
+    // Your memory usage beats 66.67 % of csharp submissions (32.5 MB)
+    public void SetZeroes (int[][] matrix) {
+        int ml = matrix.Length, l = matrix[0].Length;
+        List<List<int>> z = new List<List<int>> ();
+        for (int i = 0; i < ml; i++) {
+            for (int j = 0; j < l; j++) {
+                if (matrix[i][j] == 0) {
+                    z.Add (new List<int> (new int[] { i, j }));
                 }
             }
         }
-        if(z!=null){
-            for(int i = 0;i<z.Count();i++){
-                for(int j = 0;j<l;j++){
-                    matrix[ z[i][0] ][j]=0;
+        // Readable Code
+        //
+        // Accepted
+        // 159/159 cases passed (316 ms)
+        // Your runtime beats 95.24 % of csharp submissions
+        // Your memory usage beats 46.67 % of csharp submissions (32.6 MB)
+        //
+        // if (z != null) {
+        //     for (int i = 0; i < z.Count (); i++) {
+        //         for (int j = 0; j < l; j++) {
+        //             matrix[z[i][0]][j] = 0;
+        //         }
+        //         for (int j = 0; j < ml; j++) {
+        //             matrix[j][z[i][1]] = 0;
+        //         }
+        //     }
+        // }
+        if (z != null) {
+            if (l > ml) {
+                for (int i = 0; i < z.Count (); i++) {
+                    int j = 0;
+
+                    for (; j < ml; j++) {
+                        matrix[z[i][0]][j] = 0;
+                        matrix[j][z[i][1]] = 0;
+                    }
+                    for (; j < l; j++) {
+                        matrix[z[i][0]][j] = 0;
+                    }
                 }
-                for(int j=0;j<ml;j++){
-                    matrix[j][ z[i][1] ]=0;
+            } else {
+                for (int i = 0; i < z.Count (); i++) {
+                    int j = 0;
+
+                    for (; j < l; j++) {
+                        matrix[z[i][0]][j] = 0;
+                        matrix[j][z[i][1]] = 0;
+                    }
+                    for (; j < ml; j++) {
+                        matrix[j][z[i][1]] = 0;
+                    }
                 }
             }
         }
