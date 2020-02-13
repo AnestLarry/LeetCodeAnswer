@@ -27,35 +27,30 @@
 // ]
 // target = 13
 // Output: false
-//  √ Accepted
-//   √ 136/136 cases passed (92 ms)
-//   √ Your runtime beats 99.51 % of csharp submissions
-//   √ Your memory usage beats 100 % of csharp submissions (23.9 MB)
 public class Solution {
-    public bool SearchMatrix(int[][] matrix, int target) {
-        int l=matrix.Length;
-        if(l<1){
+    public bool SearchMatrix (int[][] matrix, int target) {
+        // Accepted
+        // 136/136 cases passed (108 ms)
+        // Your runtime beats 98.31 % of csharp submissions
+        // Your memory usage beats 84.62 % of csharp submissions (24.8 MB)
+        int l = matrix.Length;
+        if (l < 1) {
             return false;
         }
-        int ll = matrix[0].Length;
-        if (ll<1){
+        int ll = matrix[0].Length - 1;
+        if (ll < 0) {
             return false;
         }
-        for(int i =0;i<l;i++){
-            if (matrix[i][ll-1] >= target)
-            {
-                for (int j = 0; j < ll; j++)
-                {
-                    if (matrix[i][j] == target)
-                    {
+        for (int i = 0; i < l; i++) {
+            if (matrix[i][ll] < target) {
+                continue;
+            } else {
+                for (int j = 0; j <= ll; j++) {
+                    if (matrix[i][j] == target) {
                         return true;
                     }
                 }
                 return false;
-            }
-            else
-            {
-                continue;
             }
         }
         return false;

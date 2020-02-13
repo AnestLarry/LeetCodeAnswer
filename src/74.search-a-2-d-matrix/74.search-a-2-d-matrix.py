@@ -27,24 +27,25 @@
 # ]
 # target = 13
 # Output: false
-# √ Accepted
-#   √ 136/136 cases passed (72 ms)
-#   √ Your runtime beats 94.26 % of python3 submissions
-#   √ Your memory usage beats 5.88 % of python3 submissions (15.8 MB)
+
+
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        # Accepted
+        # 136/136 cases passed (68 ms)
+        # Your runtime beats 90.9 % of python3 submissions
+        # Your memory usage beats 46.98 % of python3 submissions (14.9 MB)
         if not matrix:
             return False
-        ll=len(matrix[0])
-        if ll <1:
+        ll = len(matrix[0])
+        if ll < 1:
             return False
         for i in range(len(matrix)):
-            if matrix[i][-1]<target:
+            if matrix[i][-1] < target:
                 continue
             else:
                 for j in range(ll):
-                    if matrix[i][j]==target:
+                    if matrix[i][j] == target:
                         return True
                 return False
         return False
-
