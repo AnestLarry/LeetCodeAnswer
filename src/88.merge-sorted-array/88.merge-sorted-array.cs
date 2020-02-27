@@ -16,28 +16,28 @@
 // nums2 = [2,5,6],       n = 3
 
 // Output: [1,2,2,3,5,6]
-//  √ Accepted
-//   √ 59/59 cases passed (252 ms)
-//   √ Your runtime beats 54.4 % of csharp submissions
-//   √ Your memory usage beats 6.74 % of csharp submissions (28.8 MB)
 public class Solution {
-    public void Merge(int[] nums1, int m, int[] nums2, int n) {
-        int end = nums1.Length-1;
-        m = m-1;
-        n=n-1;
-        while (m>=0 && n >=0){
-            if (nums1[m]>nums2[n]){
-                nums1[end]=nums1[m];
-                m-=1;
-            }else{
-                nums1[end]=nums2[n];
-                n-=1;
+    public void Merge (int[] nums1, int m, int[] nums2, int n) {
+        // Accepted
+        // 59/59 cases passed (260 ms)
+        // Your runtime beats 100 % of csharp submissions
+        // Your memory usage beats 5.31 % of csharp submissions (30.4 MB)
+        int end = nums1.Length - 1;
+        m = m - 1;
+        n = n - 1;
+        while (m >= 0 && n >= 0) {
+            if (nums1[m] > nums2[n]) {
+                nums1[end] = nums1[m];
+                m -= 1;
+            } else {
+                nums1[end] = nums2[n];
+                n -= 1;
             }
-            end-=1;
+            end -= 1;
         }
-        if(m<0){
-            for (int i=0;i<n+1;i++){
-                nums1[i]=nums2[i];
+        if (m < 0) {
+            for (int i = 0; i < n + 1; i++) {
+                nums1[i] = nums2[i];
             }
         }
     }

@@ -16,11 +16,11 @@
 // nums2 = [2,5,6],       n = 3
 
 // Output: [1,2,2,3,5,6]
-//  √ Accepted
-//   √ 59/59 cases passed (0 ms)
-//   √ Your runtime beats 100 % of golang submissions
-//   √ Your memory usage beats 62.91 % of golang submissions (3.6 MB)
 func merge(nums1 []int, m int, nums2 []int, n int) {
+	// Accepted
+	// 59/59 cases passed (0 ms)
+	// Your runtime beats 100 % of golang submissions
+	// Your memory usage beats 73.54 % of golang submissions (2.3 MB)
 	end := len(nums1) - 1
 	m, n = m-1, n-1
 	for m >= 0 && n >= 0 {
