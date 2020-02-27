@@ -21,34 +21,63 @@
 
 // This is a follow up problem to Search in Rotated Sorted Array, where nums may contain duplicates.
 // Would this affect the run-time complexity? How and why?
-//  √ Accepted
-//   √ 275/275 cases passed (100 ms)
-//   √ Your runtime beats 73.16 % of csharp submissions
-//   √ Your memory usage beats 50 % of csharp submissions (23.3 MB)
 public class Solution {
-    public bool Search(int[] nums, int target) {
-        int l=nums.Length;
-        if(l<1){
+    public bool Search (int[] nums, int target) {
+        // Accepted
+        // 275/275 cases passed (108 ms)
+        // Your runtime beats 89.19 % of csharp submissions
+        // Your memory usage beats 20 % of csharp submissions (25.4 MB)        int l = 0, r = nums.Length - 1;
+        int l = 0, r = nums.Length - 1;
+        if (r < 0) {
             return false;
         }
-        if(target>=nums[0]){
-            int last=0,i=0;
-            while(i<l && nums[i]>=nums[last]){
-                if (nums[i] == target)
-                {
+        while (l <= r) {
+            int mid = l + ((r - l) >> 1);
+            if (nums[mid] == target) return true;
+            while (l < mid && nums[l] == nums[mid]) l++;
+            if (nums[l] <= nums[mid]) {
+                if (nums[l] <= target && target < nums[mid]) {
+                    r = --mid;
+                } else {
+                    l = ++mid;
+                }
+            } else {
+                if (nums[mid] < target && target <= nums[r]) {
+                    l = ++mid;
+                } else {
+                    r = --mid;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool Search2 (int[] nums, int target) {
+        // Accepted
+        // 275/275 cases passed (112 ms)
+        // Your runtime beats 64.86 % of csharp submissions
+        // Your memory usage beats 20 % of csharp submissions (25.3 MB)
+        int l = nums.Length;
+        if (l < 1) {
+            return false;
+        }
+        if (target >= nums[0]) {
+            int last = 0, i = 0;
+            while (i < l && nums[i] >= nums[last]) {
+                if (nums[i] == target) {
                     return true;
                 }
-                last=i;
+                last = i;
                 i++;
             }
             return false;
-        }else{
-            int last=l-1,i=l-1;
-            while(i>0 && nums[i]<=nums[last]){
-                if(nums[i]==target){
+        } else {
+            int last = l - 1, i = l - 1;
+            while (i > 0 && nums[i] <= nums[last]) {
+                if (nums[i] == target) {
                     return true;
                 }
-                last=i;
+                last = i;
                 i--;
             }
             return false;
