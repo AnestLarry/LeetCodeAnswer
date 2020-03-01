@@ -45,25 +45,16 @@
 //         [1,2,1],   [1,1,2]
 
 // Output: false
-public class Solution
-{
-    public bool IsSameTree(TreeNode p, TreeNode q)
-    {
+public class Solution {
+    public bool IsSameTree (TreeNode p, TreeNode q) {
         // Accepted
-        // 57/57 cases passed (96 ms)
-        // Your runtime beats 59.97 % of csharp submissions
-        // Your memory usage beats 25 % of csharp submissions (23.2 MB)
-        if (p != null && q != null)
-        {
-            return p.val == q.val && IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
-        }
-        else if (p == q)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
+        // 57/57 cases passed (104 ms)
+        // Your runtime beats 91.82 % of csharp submissions
+        // Your memory usage beats 7.24 % of csharp submissions (24.1 MB)
+        if (p == null || q == null) {
+            return p == null && q == null;
+        } else {
+            return p.val == q.val && IsSameTree (p.left, q.left) && IsSameTree (p.right, q.right);
         }
     }
 }

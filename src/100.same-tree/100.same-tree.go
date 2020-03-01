@@ -49,13 +49,11 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 	// Accepted
 	// 57/57 cases passed (0 ms)
 	// Your runtime beats 100 % of golang submissions
-	// Your memory usage beats 100 % of golang submissions (2.1 MB)
-	if p != nil && q != nil {
-		return p.Val == q.Val && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
-	} else if p == q {
-		return true
+	// Your memory usage beats 72.86 % of golang submissions (2.1 MB)
+	if p == nil || q == nil {
+		return p == nil && q == nil
 	} else {
-		return false
+		return p.Val == q.Val && isSameTree(p.Left, q.Left) && isSameTree(p.Right, q.Right)
 	}
 }
 

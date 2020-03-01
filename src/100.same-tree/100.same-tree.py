@@ -43,16 +43,15 @@
 
 # Output: false
 
+
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         # Accepted
-        # 57/57 cases passed (32 ms)
-        # Your runtime beats 93.02 % of python3 submissions
-        # Your memory usage beats 5.72 % of python3 submissions (13.8 MB)
-        if p and q:
-            return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
-        elif p == q:
-            return True
+        # 57/57 cases passed(24 ms)
+        # Your runtime beats 98.33 % of python3 submissions
+        # Your memory usage beats 30.95 % of python3 submissions(13.5 MB)
+        if not p or not q:
+            return not p and not q
         else:
-            return False
+            return p.val == q.val and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 # @lc code=end
