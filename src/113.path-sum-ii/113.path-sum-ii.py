@@ -30,12 +30,14 @@
 #    [5,4,11,2],
 #    [5,8,4,5]
 # ]
-# √ Accepted
-#   √ 114/114 cases passed (56 ms)
-#   √ Your runtime beats 62.29 % of python3 submissions
-#   √ Your memory usage beats 93.1 % of python3 submissions (14.6 MB)
+
+
 class Solution:
     def pathSum(self, root: TreeNode, s: int) -> List[List[int]]:
+        # Accepted
+        # 114/114 cases passed (48 ms)
+        # Your runtime beats 80.75 % of python3 submissions
+        # Your memory usage beats 73.05 % of python3 submissions (14.5 MB)
         if not root:
             return []
         res = []
