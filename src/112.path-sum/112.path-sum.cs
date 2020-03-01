@@ -28,40 +28,33 @@
 //  /  \      \
 // 7    2      1
 // return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
-//  √ Accepted
-//   √ 114/114 cases passed (104 ms)
-//   √ Your runtime beats 69.65 % of csharp submissions
-//   √ Your memory usage beats 91.67 % of csharp submissions (24.1 MB)
-public class Solution
-{
-    public bool HasPathSum(TreeNode root, int sum)
-    {
-        if (root == null)
-        {
+public class Solution {
+    public bool HasPathSum (TreeNode root, int sum) {
+        // Accepted
+        // 114/114 cases passed (108 ms)
+        // Your runtime beats 95 % of csharp submissions
+        // Your memory usage beats 5.36 % of csharp submissions (26 MB)
+        if (root == null) {
             return false;
         }
-        if (root.left == null && root.right == null)
-        {
-            if (root.val == sum)
-            {
+        if (root.left == null && root.right == null) {
+            if (root.val == sum) {
                 return true;
             }
         }
-        if (root.left != null)
-        {
-            if (HasPathSum(root.left, sum - root.val))
-            {
-                return true;
-            }
+        if (root.left != null || root.right != null){
+            return HasPathSum (root.left, sum - root.val) || HasPathSum (root.right, sum - root.val);
         }
-        if (root.right != null)
-        {
-            if (HasPathSum(root.right, sum - root.val))
-            {
-                return true;
-            }
-        }
+        // if (root.left != null) {
+        //     if (HasPathSum (root.left, sum - root.val)) {
+        //         return true;
+        //     }
+        // }
+        // if (root.right != null) {
+        //     if (HasPathSum (root.right, sum - root.val)) {
+        //         return true;
+        //     }
+        // }
         return false;
     }
 }
-

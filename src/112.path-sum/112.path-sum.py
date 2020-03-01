@@ -29,20 +29,24 @@
 #   √ 114/114 cases passed (52 ms)
 #   √ Your runtime beats 62.15 % of python3 submissions
 #   √ Your memory usage beats 5.45 % of python3 submissions (15.6 MB)
+
+
 class Solution:
     def hasPathSum(self, root: TreeNode, sum: int) -> bool:
+        # Accepted
+        # 114/114 cases passed (40 ms)
+        # Your runtime beats 94.95 % of python3 submissions
+        # Your memory usage beats 23.16 % of python3 submissions (15.6 MB)
         if not root:
             return False
         if not root.left and not root.right:
             if root.val == sum:
                 return True
-        
+
         if root.left:
-            if self.hasPathSum(root.left,sum-root.val):
+            if self.hasPathSum(root.left, sum-root.val):
                 return True
         if root.right:
-            if self.hasPathSum(root.right,sum-root.val):
+            if self.hasPathSum(root.right, sum-root.val):
                 return True
         return False
-
-
