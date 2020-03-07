@@ -3,43 +3,40 @@
 #
 # [119] Pascal's Triangle II
 #
+# Given a non-negative index k where k ≤ 33, return the kth index row of the Pascal's triangle.
+
+# Note that the row index starts from 0.
+
+
+# In Pascal's triangle, each number is the sum of the two numbers directly above it.
+
+# Example:
+
+# Input: 3
+# Output: [1,3,3,1]
+# Follow up:
+
+# Could you optimize your algorithm to use only O(k) extra space?
+
 class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
-        #√ Accepted
-        #   √ 34/34 cases passed (36 ms)
-        #   √ Your runtime beats 75.98 % of python3 submissions
-        #   √ Your memory usage beats 7.69 % of python3 submissions (13.7 MB)
+        # Accepted
+        # 34/34 cases passed (28 ms)
+        # Your runtime beats 91.7 % of python3 submissions
+        # Your memory usage beats 23.12 % of python3 submissions (13.4 MB)
+        res = [1]*(rowIndex + 1)
+        for i in range(1, rowIndex+1):
+            for j in range((rowIndex-i)+1, rowIndex):
+                res[j] += res[j+1]
+        return res
+
+    def getRow2(self, rowIndex: int) -> List[int]:
+        # Accepted
+        # 34/34 cases passed (36 ms)
+        # Your runtime beats 55.97 % of python3 submissions
+        # Your memory usage beats 22.95 % of python3 submissions (13.4 MB)
         pascal = [1]*(rowIndex + 1)
-        for i in range(2,rowIndex+1):
-            for j in range(i-1,0,-1):
+        for i in range(2, rowIndex+1):
+            for j in range(i-1, 0, -1):
                 pascal[j] += pascal[j-1]
         return pascal
-    # Error Code
-    # def getRow2(self, rowIndex: int) -> List[int]:
-    #     if rowIndex < 1:
-    #         return []
-    #     elif rowIndex ==1:
-    #         return [[1]]
-    #     result = [1]*(rowIndex+1)
-    #     l,r = 1,rowIndex-2
-    #     while l<=r:
-    #         print(l,r)
-    #         print(self.Permutation_Number_Formula(rowIndex,l))
-    #         print(self.factorial(l))
-    #         result[l] = result[r] = \
-    #             self.Permutation_Number_Formula(rowIndex,l) / self.factorial(l)
-    #         l += 1
-    #         r -= 1
-    #     return result
-
-    # def Permutation_Number_Formula(self,n:int,m:int):
-    #     s=1
-    #     for i in range(n,n-m+1,-1):
-    #         s*=i
-    #     return s 
-    
-    # def factorial(self,n:int):
-    #     s=1
-    #     for i in range(n,2,-1):
-    #         s*=i
-    #     return s
