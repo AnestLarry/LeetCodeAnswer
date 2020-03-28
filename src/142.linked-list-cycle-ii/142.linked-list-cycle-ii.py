@@ -22,24 +22,24 @@
 # Input: head = [3,2,0,-4], pos = 1
 # Output: tail connects to node index 1
 # Explanation: There is a cycle in the linked list, where tail connects to the second node.
+
+
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
         # Accepted
-        # 16/16 cases passed (64 ms)
-        # Your runtime beats 33.7 % of python3 submissions
-        # Your memory usage beats 100 % of python3 submissions (16.9 MB)
+        # 16/16 cases passed (52 ms)
+        # Your runtime beats 85.48 % of python3 submissions
+        # Your memory usage beats 5.13 % of python3 submissions (16.7 MB)
         if not head or not head.next:
             return None
         slow = fast = head
         while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
+            slow, fast = slow.next, fast.next.next
             if slow == fast:
                 break
         if not fast or not fast.next:
             return None
-        slow = head
-        while slow != fast:
-            slow, fast = slow.next, fast.next
+        while head != fast:
+            head, fast = head.next, fast.next
         return fast
 # @lc code=end
