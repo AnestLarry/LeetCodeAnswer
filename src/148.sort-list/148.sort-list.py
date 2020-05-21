@@ -18,19 +18,53 @@
 
 # Input: -1->5->3->4->0
 # Output: -1->0->3->4->5
-# √ Accepted
-#   √ 16/16 cases passed (104 ms)
-#   √ Your runtime beats 96.31 % of python3 submissions
-#   √ Your memory usage beats 6.35 % of python3 submissions (25.6 MB)
+
+
 class Solution:
     def sortList(self, head: ListNode) -> ListNode:
+        # Accepted
+        # 16/16 cases passed (240 ms)
+        # Your runtime beats 53.28 % of python3 submissions
+        # Your memory usage beats 28.57 % of python3 submissions (20.6 MB)
+        if not head or not head.next:
+            return head
+        slow = fast = head
+        while fast.next and fast.next.next:
+            slow, fast = slow.next, fast.next.next
+        leftTail = slow
+        slow = slow.next
+        leftTail.next = None
+        left, right = self.sortList(head), self.sortList(slow)
+        return self.mergeLinked(left, right)
+
+    def mergeLinked(self, left, right):
+        temp = cur = ListNode(0)
+        while left and right:
+            if left.val < right.val:
+                cur.next = left
+                left = left.next
+            else:
+                cur.next = right
+                right = right.next
+            cur = cur.next
+        if left:
+            cur.next = left
+        elif right:
+            cur.next = right
+        return temp.next
+
+    def sortList2(self, head: ListNode) -> ListNode:
+        # Accepted
+        # 16/16 cases passed (92 ms)
+        # Your runtime beats 96.37 % of python3 submissions
+        # Your memory usage beats 7.14 % of python3 submissions (25.5 MB)
         lists = []
         while head:
-            lists+=[head.val]
-            head=head.next
+            lists += [head.val]
+            head = head.next
         lists.sort()
-        root = n =ListNode(0)
+        root = n = ListNode(0)
         for i in lists:
-            n.next=ListNode(i)
-            n=n.next
+            n.next = ListNode(i)
+            n = n.next
         return root.next

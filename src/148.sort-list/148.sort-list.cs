@@ -21,24 +21,64 @@
 
 // Input: -1->5->3->4->0
 // Output: -1->0->3->4->5
-//  √ Accepted
-//   √ 16/16 cases passed (120 ms)
-//   √ Your runtime beats 34.85 % of csharp submissions
-//   √ Your memory usage beats 7.26 % of csharp submissions (29.7 MB)
 public class Solution {
-    public ListNode SortList(ListNode head) {
-        List<int> lists = new List<int>();
-        while (head != null){
-            lists.Add(head.val);
-            head=head.next;
+    public ListNode SortList (ListNode head) {
+        // Accepted
+        // 16/16 cases passed (120 ms)
+        // Your runtime beats 100 % of csharp submissions
+        // Your memory usage beats 100 % of csharp submissions (30.1 MB)
+        if (head == null || head.next == null) {
+            return head;
         }
-        lists.Sort();
-        int l = lists.Count;
-        ListNode root=new ListNode(0);
+        ListNode slow = head, fast = head, leftTail, left, right;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        leftTail = slow;
+        slow = slow.next;
+        leftTail.next = null;
+
+        left = SortList (head);
+        right = SortList (slow);
+        return mergeLinked (left, right);
+    }
+    public ListNode mergeLinked (ListNode left, ListNode right) {
+        ListNode cur = new ListNode (0), temp = cur;
+        while (left != null && right != null) {
+            if (left.val < right.val) {
+                cur.next = left;
+                left = left.next;
+            } else {
+                cur.next = right;
+                right = right.next;
+            }
+            cur = cur.next;
+        }
+        if (left != null) {
+            cur.next = left;
+        } else if (right != null) {
+            cur.next = right;
+        }
+        return temp.next;
+    }
+
+    public ListNode SortList2 (ListNode head) {
+        // Accepted
+        // 16/16 cases passed (124 ms)
+        // Your runtime beats 96.88 % of csharp submissions
+        // Your memory usage beats 100 % of csharp submissions (31.5 MB)
+        List<int> lists = new List<int> ();
+        while (head != null) {
+            lists.Add (head.val);
+            head = head.next;
+        }
+        lists.Sort ();
+        ListNode root = new ListNode (0);
         ListNode n = root;
-        for (int i =0 ;i<l;i++){
-            n.next=new ListNode(lists[i]);
-            n=n.next;
+        for (int i = 0; i < lists.Count; i++) {
+            n.next = new ListNode (lists[i]);
+            n = n.next;
         }
         return root.next;
     }
