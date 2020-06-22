@@ -13,23 +13,35 @@
 
 # Example 1:
 
-# Input: [3,4,5,1,2] 
+# Input: [3,4,5,1,2]
 # Output: 1
 # Example 2:
 
 # Input: [4,5,6,7,0,1,2]
 # Output: 0
-# √ Accepted
-#   √ 146/146 cases passed (44 ms)
-#   √ Your runtime beats 91.68 % of python3 submissions
-#   √ Your memory usage beats 6 % of python3 submissions (13.6 MB)
+
+
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        l=len(nums)
-        if l<2:
+        # Accepted
+        # 146/146 cases passed (28 ms)
+        # Your runtime beats 99.29 % of python3 submissions
+        # Your memory usage beats 6.67 % of python3 submissions (13.8 MB)
+        l: int = len(nums)
+        if l < 2:
             return nums[0]
-        last = i = l-1
-        while i!=-1 and nums[i]<= nums[last]:
-            last=i
-            i-=1
+        last, i = l-1, l-2
+        while i != -1 and nums[i] <= nums[last]:
+            if nums[i >> 1] < nums[last]:
+                i = (i >> 1)-1
+                last = i+1
+            else:
+                last, i = i, i-1
         return nums[last]
+
+    def findMin2(self, nums: List[int]) -> int:
+        # Accepted
+        # 146/146 cases passed (40 ms)
+        # Your runtime beats 69.59 % of python3 submissions
+        # Your memory usage beats 6.67 % of python3 submissions (13.7 MB)
+        return min(nums)
