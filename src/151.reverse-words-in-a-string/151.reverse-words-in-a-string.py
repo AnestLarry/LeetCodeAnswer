@@ -32,14 +32,23 @@
 # Follow up:
 
 # For C programmers, try to solve it in-place in O(1) extra space.
-import re
 
 
 class Solution:
     def reverseWords(self, s: str) -> str:
-        # √ Accepted
-        #   √ 25/25 cases passed (28 ms)
-        #   √ Your runtime beats 98.85 % of python3 submissions
-        #   √ Your memory usage beats 8.7 % of python3 submissions (14.4 MB)
+        # Accepted
+        # 25/25 cases passed (32 ms)
+        # Your runtime beats 97.42 % of python3 submissions
+        # Your memory usage beats 10 % of python3 submissions (13.6 MB)        s = s.strip()
+        sl = s.split()
+        sl.reverse()
+        return " ".join([x for x in sl])
+
+    def reverseWords2(self, s: str) -> str:
+        # Accepted
+        # 25/25 cases passed (40 ms)
+        # Your runtime beats 76.26 % of python3 submissions
+        # Your memory usage beats 10 % of python3 submissions (13.9 MB)
+        import re
         sl = re.compile("[^ ]+").findall(s)
         return " ".join([sl[x] for x in range(len(sl)-1, -1, -1)])
