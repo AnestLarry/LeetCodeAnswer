@@ -1,5 +1,5 @@
 /*
- * @lc app=leetcode id=154 lang=csharp
+ * @lc app=leetcode.cn id=154 lang=java
  *
  * [154] Find Minimum in Rotated Sorted Array II
  */
@@ -23,18 +23,19 @@
 
 // This is a follow up problem to Find Minimum in Rotated Sorted Array.
 // Would allow duplicates affect the run-time complexity? How and why?
-public class Solution {
-    public int FindMin (int[] nums) {
+// @lc code=start
+class Solution {
+    public int findMin(int[] nums) {
         // Accepted
-        // 192/192 cases passed (104 ms)
-        // Your runtime beats 96.3 % of csharp submissions
-        // Your memory usage beats 100 % of csharp submissions (25.1 MB)
-        int l = nums.Length;
+        // 192/192 cases passed (0 ms)
+        // Your runtime beats 100 % of java submissions
+        // Your memory usage beats 60 % of java submissions (39.5 MB)
+        int l = nums.length;
         if (l < 2) {
             return nums[0];
         }
         int last = l - 1, i = l - 2;
-        while (i != -1 && nums[i] <= nums[last]) {
+        while (i > -1 && nums[i] <= nums[last]) {
             if (nums[i >> 1] < nums[last]) {
                 last = i >> 1;
                 i = last - 1;
@@ -46,3 +47,4 @@ public class Solution {
         return nums[last];
     }
 }
+// @lc code=end

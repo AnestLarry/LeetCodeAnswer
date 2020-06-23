@@ -23,18 +23,22 @@
 
 # This is a follow up problem to Find Minimum in Rotated Sorted Array.
 # Would allow duplicates affect the run-time complexity? How and why?
-# √ Accepted
-#   √ 192/192 cases passed (60 ms)
-#   √ Your runtime beats 84.71 % of python3 submissions
-#   √ Your memory usage beats 5.88 % of python3 submissions (14.1 MB)
+
+
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        l=len(nums)
-        if l<2:
+        # Accepted
+        # 192/192 cases passed (36 ms)
+        # Your runtime beats 90.33 % of python3 submissions
+        # Your memory usage beats 33.33 % of python3 submissions (13.7 MB)
+        l: int = len(nums)
+        if l < 2:
             return nums[0]
-        last = i = l-1
-        while i!=-1 and nums[i]<= nums[last]:
-            last=i
-            i-=1
+        last, i = l-1, l-2
+        while i != -1 and nums[i] <= nums[last]:
+            if nums[i >> 1] < nums[last]:
+                last = i >> 1
+                i = last-1
+            else:
+                last, i = i, i-1
         return nums[last]
-
