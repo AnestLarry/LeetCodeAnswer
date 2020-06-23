@@ -9,7 +9,7 @@
 # pop() -- Removes the element on top of the stack.
 # top() -- Get the top element.
 # getMin() -- Retrieve the minimum element in the stack.
- 
+
 
 # Example:
 
@@ -22,29 +22,48 @@
 # minStack.top();      --> Returns 0.
 # minStack.getMin();   --> Returns -2.
 # @lc code=start
-
-class MinStack2:
+class MinStack:
     # Accepted
-    # 18/18 cases passed (844 ms)
-    # Your runtime beats 8.63 % of python3 submissions
-    # Your memory usage beats 5.36 % of python3 submissions (17.6 MB)
+    # 18/18 cases passed (64 ms)
+    # Your runtime beats 99.25 % of python3 submissions
+    # Your memory usage beats 5 % of python3 submissions (16.5 MB)
     def __init__(self):
         """
         initialize your data structure here.
         """
         self.__stack = []
+        self.m = -1
+        self.cache = False
+        self.L = -1
 
     def push(self, x: int) -> None:
-        self.__stack += [x]
+        if self.L == -1:
+            self.m = x
+            self.cache = True
+        elif self.cache and x < self.m:
+            self.m = x
+        self.__stack.append(x)
+        self.L += 1
 
     def pop(self) -> None:
-        return self.__stack.pop()
+        if self.cache and self.__stack[self.L] == self.m:
+            self.cache = False
+        self.__stack.pop()
+        self.L -= 1
 
     def top(self) -> int:
-        return self.__stack[-1]
+        return self.__stack[self.L]
 
     def getMin(self) -> int:
-        return min(self.__stack)
+        if not self.cache:
+            m = self.__stack[0]
+            for i in self.__stack:
+                m = i if m > i else m
+            self.m = m
+            self.cache = True
+            return self.m
+        else:
+            return self.m
 
 
 # Your MinStack object will be instantiated and called as such:
@@ -54,55 +73,3 @@ class MinStack2:
 # param_3 = obj.top()
 # param_4 = obj.getMin()
 # @lc code=end
-
-# Fail Code
-# class MinStack:
-#     def __init__(self):
-#         """
-#         initialize your data structure here.
-#         """
-#         self.__root = node(0, None)
-#         self.__cur = None
-        
-
-#     def push(self, x: int) -> None:
-#         if not self.__cur:
-#             self.__cur = node(x, self.__root)
-#             self.__root.next = self.__cur
-#         self.__cur.next = node(x, self.__cur)
-#         self.__cur = self.__cur.next
-
-#     def pop(self) -> None:
-#         if self.__cur != None:
-#             res = self.__cur.val
-#             self.__cur = self.__cur.prev
-#             self.__cur.next = None
-#             return res
-#         else:
-#             return None
-
-#     def top(self) -> int:
-#         if self.__cur:
-#             return self.__cur.val
-#         else:
-#             return None
-
-#     def getMin(self) -> int:
-#         cur = self.__root
-#         cur = cur.next
-#         res = None
-#         while cur:
-#             if not res:
-#                 res = cur.val
-#             else:
-#                 if res > cur.val:
-#                     res = cur.val
-#             cur = cur.next
-#         return res
-
-
-# class node:
-#     def __init__(self, x: int, prev):
-#         self.val: int = x
-#         self.prev = None
-#         self.next = None

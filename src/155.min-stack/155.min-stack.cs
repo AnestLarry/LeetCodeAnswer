@@ -9,7 +9,6 @@
 // pop() -- Removes the element on top of the stack.
 // top() -- Get the top element.
 // getMin() -- Retrieve the minimum element in the stack.
- 
 
 // Example:
 
@@ -22,47 +21,54 @@
 // minStack.top();      --> Returns 0.
 // minStack.getMin();   --> Returns -2.
 // @lc code=start
-public class MinStack
-{
+public class MinStack {
 
     /** initialize your data structure here. */
     // Accepted
-    // 18/18 cases passed (408 ms)
-    // Your runtime beats 12.39 % of csharp submissions
-    // Your memory usage beats 33.33 % of csharp submissions (33.8 MB)
-    public List<int> __Stack = new List<int>();
-    public MinStack()
-    {
+    // 18/18 cases passed (152 ms)
+    // Your runtime beats 95.03 % of csharp submissions
+    // Your memory usage beats 100 % of csharp submissions (35.2 MB)
+    public List<int> __Stack = new List<int> ();
+    public bool cache = false;
+    public int m = -1;
+    public MinStack () { }
+
+    public void Push (int x) {
+        __Stack.Add (x);
+        if (__Stack.Count == 0) {
+            m = x;
+            cache = true;
+        } else if (cache && x < m) {
+            m = x;
+        }
     }
 
-    public void Push(int x)
-    {
-        __Stack.Add(x);
+    public void Pop () {
+        if (m == __Stack[__Stack.Count - 1]) {
+            cache = false;
+        }
+        __Stack.RemoveAt (__Stack.Count - 1);
     }
 
-    public void Pop()
-    {
-        __Stack.RemoveAt(__Stack.Count -1);
-    }
-
-    public int Top()
-    {
+    public int Top () {
         return __Stack[__Stack.Count - 1];
     }
 
-    public int GetMin()
-    {
-        int minnum;
-        if(__Stack.Count()>0){
-            minnum = __Stack[0];
-            foreach(int i in __Stack){
-                if(minnum>i){
+    public int GetMin () {
+        if (cache) {
+            return m;
+        } else {
+            int minnum = __Stack[0];
+            foreach (int i in __Stack) {
+                if (minnum > i) {
                     minnum = i;
                 }
             }
+            m = minnum;
+            cache = true;
             return minnum;
         }
-        return 0;
+
     }
 }
 
@@ -75,4 +81,3 @@ public class MinStack
  * int param_4 = obj.GetMin();
  */
 // @lc code=end
-
