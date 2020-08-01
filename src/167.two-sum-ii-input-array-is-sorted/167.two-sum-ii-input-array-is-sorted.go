@@ -16,11 +16,11 @@
 // Input: numbers = [2,7,11,15], target = 9
 // Output: [1,2]
 // Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
-//  √ Accepted
-//   √ 17/17 cases passed (4 ms)
-//   √ Your runtime beats 98.84 % of golang submissions
-//   √ Your memory usage beats 44.52 % of golang submissions (3 MB)
 func twoSum(numbers []int, target int) []int {
+	// Accepted
+	// 17/17 cases passed (4 ms)
+	// Your runtime beats 96.56 % of golang submissions
+	// Your memory usage beats 100 % of golang submissions (3 MB)
 	l := len(numbers)
 	if l < 3 {
 		return []int{1, 2}
@@ -31,9 +31,9 @@ func twoSum(numbers []int, target int) []int {
 		if r == target {
 			return []int{i + 1, j + 1}
 		} else if r > target {
-			j -= 1
+			j--
 		} else {
-			i += 1
+			i++
 		}
 	}
 	return []int{1, 2}
