@@ -1,8 +1,9 @@
 /*
- * @lc app=leetcode id=191 lang=csharp
+ * @lc app=leetcode.cn id=191 lang=java
  *
- * [191] Number of 1 Bits
+ * [191] 位1的个数
  */
+/*
 //  Write a function that takes an unsigned integer and return the number of '1' bits it has (also known as the Hamming weight).
 
 // Example 1:
@@ -29,16 +30,22 @@
 // Follow up:
 
 // If this function is called many times, how would you optimize it?
-// Accepted
-// 601/601 cases passed (40 ms)
-// Your runtime beats 98.18 % of csharp submissions
-// Your memory usage beats 100 % of csharp submissions (14.6 MB)
+
+Accepted
+601/601 cases passed (1 ms)
+Your runtime beats 99.02 % of java submissions
+Your memory usage beats 37.87 % of java submissions (36.7 MB)
+*/
+// @lc code=start
 public class Solution {
-    public int HammingWeight (uint n) {
+    // you need to treat n as an unsigned value
+    public int hammingWeight(int n) {
         int r;
-        for (r = 0; n != 0; r++) {
-            n &= n - 1;
+        for(r = 0;n!=0;r++){
+            n&=n-1;
         }
         return r;
     }
 }
+// @lc code=end
+
