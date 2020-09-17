@@ -16,22 +16,25 @@
 # 82 + 22 = 68
 # 62 + 82 = 100
 # 12 + 02 + 02 = 1
+
+
 class Solution:
     def isHappy(self, n: int) -> bool:
-        # √ Accepted
-        #   √ 401/401 cases passed (40 ms)
-        #   √ Your runtime beats 75.42 % of python3 submissions
-        #   √ Your memory usage beats 5.26 % of python3 submissions (13.8 MB)
-        repeat = []
-        r = str(n)
-        while r != "1":
-            r = self.hprocess(r)
-            if r in repeat:
+        # Accepted
+        # 401/401 cases passed (32 ms)
+        # Your runtime beats 99.46 % of python3 submissions
+        # Your memory usage beats 76.66 % of python3 submissions (13.6 MB)
+        repeat = set()
+        repeat.add(n)
+        while n != 1:
+            nn = 0
+            while n > 0:
+                d = n % 10
+                nn += d * d
+                n = int(n / 10)
+            if nn in repeat:
                 return False
             else:
-                repeat.append(r)
+                repeat.add(nn)
+            n = nn
         return True
-
-    def hprocess(self, s: str):
-        l = (int(i)**2 for i in s)
-        return str(sum(l))
